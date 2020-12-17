@@ -1,0 +1,16 @@
+#sidebar {
+    width: 350px;
+    position: fixed; 
+    left: 0px;
+    height: 100vh;
+    z-index: 999;
+    background-color: rgb(230, 225, 225);
+  
+}
+
+#main-container {
+    float: right;
+    width: 1000px;  
+    margin: 20px;
+}
+
