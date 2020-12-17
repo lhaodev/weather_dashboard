@@ -1,6 +1,6 @@
 #sidebar {
     width: 350px;
-    position: fixed; 
+    float: left;
     left: 0px;
     height: 100vh;
     z-index: 999;
