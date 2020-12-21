@@ -76,25 +76,31 @@ $("#button").on("click", function (event) {
         method: "GET"
     })
         // After data comes back from the request
-        .then(function (forecast) {
-            console.log(forecast);
+        .then(function (answer) {
+            console.log(answer);
 
             for (i = 0; i < $(".forecast").length; i++) {
 
+                //  $(".forecast").addClass(".color");
+                $(".forecast").css({ "background-color": "#f8ebd8", "color": "#ad6925" });
+                //show date
+                $(".date").each(function () { $(this).text(answer.list[i].dt_txt.split(" ")[0]) })
 
-                $(".date").each(function () { $(this).text(forecast.list[i].dt_txt.split(" ")[0]) })
-
-
-
-
-
-                var forecastPic = forecast.list[i].weather[0].icon;
-
+                //show icon pictures
+                var forecastPic = answer.list[i].weather[0].icon;
                 console.log(forecastPic);
-
                 $(".pic").attr("src", "https://openweathermap.org/img/wn/" + forecastPic + "@2x.png");
+                $(".pic").attr("alt", answer.list[i].weather[0].description);
 
-                $(".pic").attr("alt", forecast.list[i].weather[0].description);
+
+                // show tempature
+
+                $(".temp").text("Temperature: " + answer.list[i].main.temp + " °F");
+                //show humidity
+
+                $(".humi").text("Humidity: " + answer.list[i].main.humidity + " %");
+
+
 
             }
 
