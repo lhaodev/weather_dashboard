@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 
     <!--CSS stylesheet-->
     <link rel="stylesheet" href="style.css" />
@@ -57,37 +58,97 @@
     <div id="main-container">
         <div class="card">
             <div class=" card-body">
-                <h2 class="card-title" id="cityInfo">Atlanta</h2>
-                <div class="card-text" id="temperature"> Temperature:
+                <div class="row">
+                    <div class="col-12">
+                        <h5 class="card-title" id="cityInfo"></h5>
+                        <h5 class="card-title" id="currentDate"></h5>
+                        <img id="current-pic" src="" alt="">
+                    </div>
                 </div>
-                <div class="card-text" id="humidity">Humidity:
+
+                <div class=" row">
+                    <div class="col-12">
+                        <p class="card-text" id="temperature">Temperature:</p>
+                    </div>
                 </div>
-                <div class="card-text" id="windSpeed">Wind Speed:
+
+                <div class="row">
+                    <div class="col-12">
+                        <p class="card-text" id="humidity">Humidity:</p>
+                    </div>
                 </div>
-                <div class="card-text" id="uv"> UV Index:
+
+                <div class="row">
+                    <div class="col-12">
+                        <p class="card-text" id="windSpeed">Wind Speed:</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <p class="card-text " id="uvIndex" style="display:inline; ">UV Index:</p>
+                        <span class="card-text" id="uv" style="display:inline;"></span>
+                    </div>
                 </div>
             </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="card" style="margin-top: 10px;">
             <div class=" card-body">
                 <div class="row">
                     <h2 class="card-title" id="forcast">5-Day Forecast</h2>
                 </div>
                 <div class="row">
-                    <div class="col">
-                        1 of 5
+                    <div class="col forecast">
+                        <p class="card-text date"></p>
+                        <img id="pic" src="" alt="">
+                        <!-- <p class="card-text pic"></p> -->
+                        <p class="card-text temp"></p>
+                        <p class="card-text humi"></p>
                     </div>
-                    <div class="col">
-                        2 of 5
+                    <div class="col forecast">
+                        <p class="card-text date"></p>
+                        <img id="pic" src="" alt="">
+                        <p class="card-text temp"></p>
+                        <p class="card-text humi"></p>
                     </div>
-                    <div class="col">
-                        3 of 5
+                    <div class="col forecast">
+                        <p class="card-text date"></p>
+                        <img id="pic" src="" alt="">
+                        <p class="card-text temp"></p>
+                        <p class="card-text humi"></p>
                     </div>
-                    <div class="col">
-                        4 of 5
+                    <div class="col forecast">
+                        <p class="card-text date"></p>
+                        <img id="pic" src="" alt="">
+                        <p class="card-text temp"></p>
+                        <p class="card-text humi"></p>
                     </div>
-                    <div class="col">
-                        5 of 5
+                    <div class="col forecast">
+                        <p class="card-text date"></p>
+                        <img id="pic" src="" alt="">
+                        <p class="card-text temp"></p>
+                        <p class="card-text humi"></p>
                     </div>
                 </div>
             </div>
@@ -97,11 +158,11 @@
 
 
 
-
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <!-- jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- javascript -->
