@@ -5,8 +5,14 @@ console.log(currentDay);
 
 $("#button").on("click", function (event) {
     event.preventDefault();
+    showWeather();
+
+});
+
+
+function showWeather() {
     // Grabbing and storing the city property value from the button
-    var cityName = $(this).parent().siblings("#search").val();
+    var cityName = $("#button").parent().siblings("#search").val();
     console.log(cityName);
 
     var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=59e230f5023bafd657c9d2330a31f52d";
@@ -42,82 +48,53 @@ $("#button").on("click", function (event) {
                 // After data comes back from the request
                 .then(function (result) {
                     console.log(result)
-
-                    // UVIndex.setAttribute("class", "badge badge-danger");
-                    // UVIndex.innerHTML = response.data[0].value;
-                    //$("#uvIndex") = result.value;
-
-
-                    // var uvIndex = result.value;
-                    // uvIndex.setAttribute("class", "badge badge-danger");
-
-                    // $("#uv").text = "UV Index: ";
-                    // $("#uv").append(UVIndex);
-
-
                     $("#uv").text(result.value);
                     $("#uv").attr("class", "badge badge-danger");
-                    //$("#uv").text(result.value);
-                    // $("#uv").css("background", "red");
                 });
 
-        })
 
+            // 3rd Ajax call for future weather
+            var futureURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly,alerts&units=imperial&appid=59e230f5023bafd657c9d2330a31f52d&cnt=1";
+            $.ajax({
+                url: futureURL,
+                method: "GET"
+            })
+                // After data comes back from the request
+                //forEach or for (forecast of answer.list) { ... }
+                .then(function (answer) {
+                    console.log(answer);
+                    for (i = 0; i < 5; i++) {
+                        //  $(".forecast").addClass(".color");
+                        $(".forecast").css({ "background-color": "#f8ebd8", "color": "#ad6925" });
+                        //show date
+                        $(".date").each(function (i) {
+                            $(this).text(new Date(answer.daily[i + 1].dt * 1000).toLocaleDateString("en-US")
+                            )
+                        });
+                        $('.pic').each(function (i) {
+                            $(this).attr("src", "https://openweathermap.org/img/wn/" + answer.daily[i + 1].weather[0].icon + "@2x.png");
+                        });
+                        $('.pic').each(function (i) {
+                            $(this).attr("alt", answer.daily[i + 1].weather[0].description);
+                        });
 
+                        // show tempature
+                        $('.temp').each(function (i) {
+                            $(this).text("Temperature: " + answer.daily[i + 1].temp.day + " °F");
+                        });
 
-
-
-
-    // 3rd ajax call for weather forcasting
-    var forecastQueryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=imperial&cnt=5&appid=59e230f5023bafd657c9d2330a31f52d";
-
-    $.ajax({
-        url: forecastQueryURL,
-        method: "GET"
-    })
-        // After data comes back from the request
-        .then(function (answer) {
-            console.log(answer);
-
-            for (i = 0; i < $(".forecast").length; i++) {
-
-                //  $(".forecast").addClass(".color");
-                $(".forecast").css({ "background-color": "#f8ebd8", "color": "#ad6925" });
-                //show date
-                $(".date").each(function () { $(this).text(answer.list[i].dt_txt.split(" ")[0]) })
-
-                //show icon pictures
-                var forecastPic = answer.list[i].weather[0].icon;
-                console.log(forecastPic);
-                $(".pic").attr("src", "https://openweathermap.org/img/wn/" + forecastPic + "@2x.png");
-                $(".pic").attr("alt", answer.list[i].weather[0].description);
-
-
-                // show tempature
-
-                $(".temp").text("Temperature: " + answer.list[i].main.temp + " °F");
-                //show humidity
-
-                $(".humi").text("Humidity: " + answer.list[i].main.humidity + " %");
-
-
-
-            }
-
+                        //show humidity
+                        $('.humi').each(function (i) {
+                            $(this).text("Humidity: " + answer.daily[i + 1].humidity + " %");
+                        });
+                    }
+                });
         });
+};
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-});
 
