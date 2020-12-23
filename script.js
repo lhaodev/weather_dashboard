@@ -1,3 +1,5 @@
+var cityList = [];
+var cityName;
 
 var currentDay = (moment().format("dddd, MMMM Do"));
 console.log(currentDay);
@@ -6,13 +8,16 @@ console.log(currentDay);
 $("#button").on("click", function (event) {
     event.preventDefault();
     showWeather();
-
+    cityName = $("#search").val().trim();
+    cityList.push(cityName);
+    storeCityArray();
+    storeCurrentCity();
 });
 
 
 function showWeather() {
     // Grabbing and storing the city property value from the button
-    var cityName = $("#button").parent().siblings("#search").val();
+    cityName = $("#button").parent().siblings("#search").val();
     console.log(cityName);
 
     var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=59e230f5023bafd657c9d2330a31f52d";
@@ -95,6 +100,15 @@ function showWeather() {
 
 
 
+// This function saves the city array to local storage
+function storeCityArray() {
+    localStorage.setItem("cities", JSON.stringify(cityList));
+}
 
+// This function saves the currently display city to local storage
+function storeCurrentCity() {
+
+    localStorage.setItem("currentCity", JSON.stringify(cityName));
+}
 
 
