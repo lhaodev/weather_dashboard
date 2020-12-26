@@ -11,7 +11,7 @@ function initPage() {
     function showWeather(cityName) {
         // Grabbing and storing the city property value from the button
 
-        var queryURL = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=59e230f5023bafd657c9d2330a31f52d";
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=59e230f5023bafd657c9d2330a31f52d";
 
         $("#cityInfo").text(cityName).css('textTransform', 'capitalize');
         $("#currentDate").text(currentDay);
@@ -29,12 +29,12 @@ function initPage() {
                 $("#humidity").text("Humidity: " + response.main.humidity + " %");
                 $("#windSpeed").text("Wind Speed: " + response.wind.speed + " MPH");
                 var weatherPic = response.weather[0].icon;
-                $("#current-pic").attr("src", "https://cors-anywhere.herokuapp.com/openweathermap.org/img/wn/" + weatherPic + "@2x.png");
+                $("#current-pic").attr("src", "https://openweathermap.org/img/wn/" + weatherPic + "@2x.png");
                 $("#current-pic").attr("alt", response.weather[0].description);
 
                 var lat = response.coord.lat;
                 var lon = response.coord.lon;
-                var UVQueryURL = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=59e230f5023bafd657c9d2330a31f52d&cnt=1";
+                var UVQueryURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=59e230f5023bafd657c9d2330a31f52d&cnt=1";
 
                 // 2nd Ajax call for UV Index
                 $.ajax({
@@ -50,7 +50,7 @@ function initPage() {
 
 
                 // 3rd Ajax call for future weather
-                var futureURL = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly,alerts&units=imperial&appid=59e230f5023bafd657c9d2330a31f52d&cnt=1";
+                var futureURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly,alerts&units=imperial&appid=59e230f5023bafd657c9d2330a31f52d&cnt=1";
                 $.ajax({
                     url: futureURL,
                     method: "GET"
@@ -68,7 +68,7 @@ function initPage() {
                                 )
                             });
                             $('.pic').each(function (i) {
-                                $(this).attr("src", "https://cors-anywhere.herokuapp.com/openweathermap.org/img/wn/" + answer.daily[i + 1].weather[0].icon + "@2x.png");
+                                $(this).attr("src", "https://openweathermap.org/img/wn/" + answer.daily[i + 1].weather[0].icon + "@2x.png");
                             });
                             $('.pic').each(function (i) {
                                 $(this).attr("alt", answer.daily[i + 1].weather[0].description);
