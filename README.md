@@ -35,4 +35,5 @@ The following image demonstrates the application functionality:
 
 ![weather dashboard demo](./Assets/06-server-side-apis-homework-demo.png)
 
+<img width="1436" alt="weather_dashboard" src="https://user-images.githubusercontent.com/71423804/113652981-ddf95b00-9662-11eb-8262-1f4513fe9589.png">
 
